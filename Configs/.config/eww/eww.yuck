@@ -1,0 +1,38 @@
+; Variables
+(include "./variables.yuck")
+; Library for commonly used stuff
+(include "./lib.yuck")
+; Other widgets
+(include "./windows/cheatsheet.yuck")
+
+(defwidget bar_widget []
+  (centerbox
+    :class "bar-bg flyin-top bar-bg-top-decor"
+    :style "
+    ${ANIM_ENTER[0]}
+    "
+    (box
+      :hexpand true
+      (leftspace_widget)
+    )
+    (centerbox
+      (box
+        :orientation "h" :space-evenly false
+        (music_widget)
+      )
+      (box
+        :orientation "h"
+        (dynamiccenter_widget)
+      )
+      (box
+        :orientation "h" :space-evenly false
+        :halign "end"
+        (system_widget)
+      )
+    )
+    (box
+      :hexpand true
+      (dynamicright_widget)
+    )
+  )
+)
