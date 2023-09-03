@@ -46,7 +46,7 @@ def parse_keybinds(keybindsFile, categories={}):
 
 def parseArguments():
     parser = argparse.ArgumentParser(description='Parse a keybindings file from Hyprland, returns json data.')
-    parser.add_argument('-c', '--config', type=file, required=False, default=os.getenv('HOME')+"/.config/hypr/hyprland.conf",
+    parser.add_argument('-c', '--config', type=file, required=False, default="~/.config/hypr/hyprland.conf",
                         help='A .conf file to read from. Defaults to ~/.config/Hypr/keybindings.conf if absent')
     parser.add_argument('-o', '--outfile', type=directory, required=False,
                         help='If defined, writes the json data to a file instead of printing it.')
@@ -60,12 +60,12 @@ def file(string):
     else:
         raise argparse.ArgumentTypeError(f"Cannot read config: {string} does not exist.")
 
-
 def directory(string):
     if os.path.isdir(os.path.dirname(string)):
         return string
     else:
         raise argparse.ArgumentTypeError(f"Cannot write json: The parent directory for {string} does not exist.")
+
 def main():
     args = parseArguments()
     parsed_categories = parse_keybinds(args.config)
