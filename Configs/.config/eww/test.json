@@ -1,1 +1,596 @@
-[ [ { "Binds": [ { "Bind": "$mainMod A", "BindType": "bind", "Command": "pkill rofi || ~/.config/hypr/scripts/rofilaunch.sh d ", "Comments": "launch desktop applications", "Dispatcher": "exec" }, { "Bind": "$mainMod tab", "BindType": "bind", "Command": "pkill rofi || ~/.config/hypr/scripts/rofilaunch.sh w ", "Comments": "switch between desktop applications", "Dispatcher": "exec" }, { "Bind": "$mainMod R", "BindType": "bind", "Command": "pkill rofi || ~/.config/hypr/scripts/rofilaunch.sh f ", "Comments": "browse system files", "Dispatcher": "exec" }, { "Bind": "$mainMod SHIFT A", "BindType": "bind", "Command": "~/.config/hypr/scripts/rofiselect.sh ", "Comments": "rofi style select menu", "Dispatcher": "exec" } ], "name": "rofi" } ] ]
+{
+    "window/session actions": {
+        "binds": [
+            {
+                "mod": "$mainMod",
+                "key": "Q",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/dontkillsteam.sh",
+                "comment": "killactive, kill the window on focus"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "delete",
+                "dispatcher": "exit",
+                "command": "",
+                "comment": "kill hyperland session"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "W",
+                "dispatcher": "togglefloating",
+                "command": "",
+                "comment": "toggle the window on focus to float"
+            },
+            {
+                "mod": "ALT",
+                "key": "return",
+                "dispatcher": "fullscreen",
+                "command": "",
+                "comment": "toggle the window on focus to fullscreen"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "G",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/gamemode.sh",
+                "comment": "disable hypr effects for gamemode"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "L",
+                "dispatcher": "exec",
+                "command": "swaylock",
+                "comment": "lock screen"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "backspace",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/logoutlaunch.sh 1",
+                "comment": "logout menu"
+            }
+        ]
+    },
+    "application shortcuts": {
+        "binds": [
+            {
+                "mod": "$mainMod",
+                "key": "T",
+                "dispatcher": "exec",
+                "command": "kitty",
+                "comment": "open terminal"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "E",
+                "dispatcher": "exec",
+                "command": "dolphin",
+                "comment": "open file manager"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "V",
+                "dispatcher": "exec",
+                "command": "code",
+                "comment": "open vs code"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "F",
+                "dispatcher": "exec",
+                "command": "firefox",
+                "comment": "open browser"
+            }
+        ]
+    },
+    "rofi is toggled on/off if you repeat the key presses": {
+        "binds": [
+            {
+                "mod": "$mainMod",
+                "key": "A",
+                "dispatcher": "exec",
+                "command": "pkill rofi || ~/.config/hypr/scripts/rofilaunch.sh d",
+                "comment": "launch desktop applications"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "tab",
+                "dispatcher": "exec",
+                "command": "pkill rofi || ~/.config/hypr/scripts/rofilaunch.sh w",
+                "comment": "switch between desktop applications"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "R",
+                "dispatcher": "exec",
+                "command": "pkill rofi || ~/.config/hypr/scripts/rofilaunch.sh f",
+                "comment": "browse system files"
+            }
+        ]
+    },
+    "audio control": {
+        "binds": [
+            {
+                "mod": "",
+                "key": "F10",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/volumecontrol.sh -o m",
+                "comment": "toggle audio mute"
+            },
+            {
+                "mod": "",
+                "key": "F11",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/volumecontrol.sh -o d",
+                "comment": "decrease volume"
+            },
+            {
+                "mod": "",
+                "key": "F12",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/volumecontrol.sh -o i",
+                "comment": "increase volume"
+            },
+            {
+                "mod": "",
+                "key": "XF86AudioMute",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/volumecontrol.sh -o m",
+                "comment": "toggle audio mute"
+            },
+            {
+                "mod": "",
+                "key": "XF86AudioMicMute",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/volumecontrol.sh -i m",
+                "comment": "toggle microphone mute"
+            },
+            {
+                "mod": "",
+                "key": "XF86AudioLowerVolume",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/volumecontrol.sh -o d",
+                "comment": "decrease volume"
+            },
+            {
+                "mod": "",
+                "key": "XF86AudioRaiseVolume",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/volumecontrol.sh -o i",
+                "comment": "increase volume"
+            },
+            {
+                "mod": "",
+                "key": "XF86AudioPlay",
+                "dispatcher": "exec",
+                "command": "playerctl play-pause"
+            },
+            {
+                "mod": "",
+                "key": "XF86AudioPause",
+                "dispatcher": "exec",
+                "command": "playerctl play-pause"
+            },
+            {
+                "mod": "",
+                "key": "XF86AudioNext",
+                "dispatcher": "exec",
+                "command": "playerctl next"
+            },
+            {
+                "mod": "",
+                "key": "XF86AudioPrev",
+                "dispatcher": "exec",
+                "command": "playerctl previous"
+            }
+        ]
+    },
+    "brightness control": {
+        "binds": [
+            {
+                "mod": "",
+                "key": "XF86MonBrightnessUp",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/brightnesscontrol.sh i",
+                "comment": "increase brightness"
+            },
+            {
+                "mod": "",
+                "key": "XF86MonBrightnessDown",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/brightnesscontrol.sh d",
+                "comment": "decrease brightness"
+            }
+        ]
+    },
+    "screenshot/screencapture": {
+        "binds": [
+            {
+                "mod": "$mainMod",
+                "key": "P",
+                "dispatcher": "exec",
+                "command": "grim -g \"$(slurp)\" - | swappy -f -",
+                "comment": "screenshot snip"
+            },
+            {
+                "mod": "$mainMod ALT",
+                "key": "P",
+                "dispatcher": "exec",
+                "command": "grim $XDG_PICTURES_DIR/$(date +'%y%m%d_%Hh%Mm%Ss_screenshot.png')",
+                "comment": "print current screen"
+            },
+            {
+                "mod": "CTRL SHIFT",
+                "key": "P",
+                "dispatcher": "pass",
+                "command": "^(com\\.obsproject\\.Studio)$",
+                "comment": "start/stop obs screen recording"
+            }
+        ]
+    },
+    "exec custom scripts": {
+        "binds": [
+            {
+                "mod": "$mainMod ALT",
+                "key": "right",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/swwwallpaper.sh -n",
+                "comment": "next wallpaper"
+            },
+            {
+                "mod": "$mainMod ALT",
+                "key": "left",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/swwwallpaper.sh -p",
+                "comment": "previous wallpaper"
+            },
+            {
+                "mod": "$mainMod ALT",
+                "key": "up",
+                "dispatcher": "exec",
+                "command": "~/.config/waybar/wbarconfgen.sh n",
+                "comment": "next waybar mode"
+            },
+            {
+                "mod": "$mainMod ALT",
+                "key": "down",
+                "dispatcher": "exec",
+                "command": "~/.config/waybar/wbarconfgen.sh p",
+                "comment": "previous waybar mode"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "T",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/themeselect.sh",
+                "comment": "theme select menu"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "A",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/rofiselect.sh",
+                "comment": "rofi style select menu"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "W",
+                "dispatcher": "exec",
+                "command": "~/.config/hypr/scripts/swwwallselect.sh -n",
+                "comment": "rofi wall select menu"
+            }
+        ]
+    },
+    "Move focus with mainMod + arrow keys": {
+        "binds": [
+            {
+                "mod": "$mainMod",
+                "key": "left",
+                "dispatcher": "movefocus",
+                "command": "l"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "right",
+                "dispatcher": "movefocus",
+                "command": "r"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "up",
+                "dispatcher": "movefocus",
+                "command": "u"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "down",
+                "dispatcher": "movefocus",
+                "command": "d"
+            },
+            {
+                "mod": "ALT",
+                "key": "Tab",
+                "dispatcher": "movefocus",
+                "command": "d"
+            }
+        ]
+    },
+    "Switch workspaces with mainMod + [0-9]": {
+        "binds": [
+            {
+                "mod": "$mainMod",
+                "key": "1",
+                "dispatcher": "workspace",
+                "command": "1"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "2",
+                "dispatcher": "workspace",
+                "command": "2"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "3",
+                "dispatcher": "workspace",
+                "command": "3"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "4",
+                "dispatcher": "workspace",
+                "command": "4"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "5",
+                "dispatcher": "workspace",
+                "command": "5"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "6",
+                "dispatcher": "workspace",
+                "command": "6"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "7",
+                "dispatcher": "workspace",
+                "command": "7"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "8",
+                "dispatcher": "workspace",
+                "command": "8"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "9",
+                "dispatcher": "workspace",
+                "command": "9"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "0",
+                "dispatcher": "workspace",
+                "command": "10"
+            }
+        ]
+    },
+    "Resize windows": {
+        "binds": [
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "right",
+                "dispatcher": "resizeactive",
+                "command": "10 0"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "left",
+                "dispatcher": "resizeactive",
+                "command": "-10 0"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "up",
+                "dispatcher": "resizeactive",
+                "command": "0 -10"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "down",
+                "dispatcher": "resizeactive",
+                "command": "0 10"
+            }
+        ]
+    },
+    "Move active window to a workspace with mainMod + SHIFT + [0-9]": {
+        "binds": [
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "1",
+                "dispatcher": "movetoworkspace",
+                "command": "1"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "2",
+                "dispatcher": "movetoworkspace",
+                "command": "2"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "3",
+                "dispatcher": "movetoworkspace",
+                "command": "3"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "4",
+                "dispatcher": "movetoworkspace",
+                "command": "4"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "5",
+                "dispatcher": "movetoworkspace",
+                "command": "5"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "6",
+                "dispatcher": "movetoworkspace",
+                "command": "6"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "7",
+                "dispatcher": "movetoworkspace",
+                "command": "7"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "8",
+                "dispatcher": "movetoworkspace",
+                "command": "8"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "9",
+                "dispatcher": "movetoworkspace",
+                "command": "9"
+            },
+            {
+                "mod": "$mainMod SHIFT",
+                "key": "0",
+                "dispatcher": "movetoworkspace",
+                "command": "10"
+            }
+        ]
+    },
+    "Scroll through existing workspaces with mainMod + scroll": {
+        "binds": [
+            {
+                "mod": "$mainMod",
+                "key": "mouse_down",
+                "dispatcher": "workspace",
+                "command": "e+1"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "mouse_up",
+                "dispatcher": "workspace",
+                "command": "e-1"
+            }
+        ]
+    },
+    "Move/resize windows with mainMod + LMB/RMB and dragging": {
+        "binds": [
+            {
+                "mod": "$mainMod",
+                "key": "mouse:272",
+                "dispatcher": "movewindow"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "mouse:273",
+                "dispatcher": "resizewindow"
+            }
+        ]
+    },
+    "Special workspaces (scratchpad)": {
+        "binds": [
+            {
+                "mod": "$mainMod ALT",
+                "key": "S",
+                "dispatcher": "movetoworkspacesilent",
+                "command": "special"
+            },
+            {
+                "mod": "$mainMod",
+                "key": "S",
+                "dispatcher": "togglespecialworkspace",
+                "command": ""
+            }
+        ]
+    },
+    "Toggle Layout": {
+        "binds": [
+            {
+                "mod": "$mainMod",
+                "key": "J",
+                "dispatcher": "togglesplit",
+                "command": "",
+                "comment": "dwindle"
+            }
+        ]
+    },
+    "Move window to workspace Super + Alt + [0-9]": {
+        "binds": [
+            {
+                "mod": "$mainMod ALT",
+                "key": "1",
+                "dispatcher": "movetoworkspacesilent",
+                "command": "1"
+            },
+            {
+                "mod": "$mainMod ALT",
+                "key": "2",
+                "dispatcher": "movetoworkspacesilent",
+                "command": "2"
+            },
+            {
+                "mod": "$mainMod ALT",
+                "key": "3",
+                "dispatcher": "movetoworkspacesilent",
+                "command": "3"
+            },
+            {
+                "mod": "$mainMod ALT",
+                "key": "4",
+                "dispatcher": "movetoworkspacesilent",
+                "command": "4"
+            },
+            {
+                "mod": "$mainMod ALT",
+                "key": "5",
+                "dispatcher": "movetoworkspacesilent",
+                "command": "5"
+            },
+            {
+                "mod": "$mainMod ALT",
+                "key": "6",
+                "dispatcher": "movetoworkspacesilent",
+                "command": "6"
+            },
+            {
+                "mod": "$mainMod ALT",
+                "key": "7",
+                "dispatcher": "movetoworkspacesilent",
+                "command": "7"
+            },
+            {
+                "mod": "$mainMod ALT",
+                "key": "8",
+                "dispatcher": "movetoworkspacesilent",
+                "command": "8"
+            },
+            {
+                "mod": "$mainMod ALT",
+                "key": "9",
+                "dispatcher": "movetoworkspacesilent",
+                "command": "9"
+            },
+            {
+                "mod": "$mainMod ALT",
+                "key": "0",
+                "dispatcher": "movetoworkspacesilent",
+                "command": "10"
+            }
+        ]
+    }
+}
