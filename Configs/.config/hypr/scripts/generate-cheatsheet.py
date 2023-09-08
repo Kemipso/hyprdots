@@ -44,12 +44,29 @@ def parse_keybinds(keybindsFile, categories={}):
                 
     return categories
 
+def prettify(categories):
+    # In: {"mod": "$mainMod","key": "H","dispatcher": "exec",
+    # "command": "~/.config/eww/scripts/toggle-cheatsheet.sh", "comment": "Keybindings cheatsheet"},...
+    # Out: {"key": "Win + H", "command": "~/.config/eww/scripts/toggle-cheatsheet.sh", "comment": "Keybindings cheatsheet" }
+    for category in categories.keys():
+        for keybind in categories[category]["binds"]:
+            keybind["key"] = " + ".join([keybind["mod"], keybind["key"]]).replace("$mainMod", "Win")
+            keybind.pop("mod")
+            if keybind["dispatcher"] != "exec":
+                keybind["command"] = " ".join([keybind["dispatcher"], keybind.get("command","")])
+                
+            keybind.pop("dispatcher")
+            
+    return categories
+
 def parseArguments():
     parser = argparse.ArgumentParser(description='Parse a keybindings file from Hyprland, returns json data.')
     parser.add_argument('-c', '--config', type=file, required=False, default="~/.config/hypr/hyprland.conf",
                         help='A .conf file to read from. Defaults to ~/.config/Hypr/keybindings.conf if absent')
     parser.add_argument('-o', '--outfile', type=directory, required=False,
                         help='If defined, writes the json data to a file instead of printing it.')
+    parser.add_argument('-p', '--pretty', required=False, action="store_true",
+                        help='Pretty parsing, reformated to fit my cheatsheet.')
     args = parser.parse_args()
 
     return args
@@ -69,6 +86,9 @@ def directory(string):
 def main():
     args = parseArguments()
     parsed_categories = parse_keybinds(args.config)
+
+    if args.pretty:
+        parsed_categories = prettify(parsed_categories)
 
     if args.outfile:
         with open(args.outfile, 'w') as output:
